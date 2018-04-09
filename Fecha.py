@@ -11,9 +11,9 @@ class Fecha:
         self.year = None
 
     def getDate(self):
-        dia=input("Ingrese el dia")
-        mes=input("Ingrese el mes")
-        year=input("Ingrese el año")
+        self.dia=int(input("Ingrese el dia: "))
+        self.mes=int(input("Ingrese el mes: "))
+        self.year=int(input("Ingrese el año: "))
         
     def getDay(self):
         return self.dia
@@ -32,22 +32,23 @@ class Fecha:
 
     def validarFecha(self):
         if self.mes < 1 or self.mes > 12:
-            print("Fecha invalida")
+            return ("Fecha invalida")
         else:
-            if validarBisiesto():
+            if self.validarBisiesto():
                 if self.mes == 2:
                     if self.dia>29:
-                        print("Fecha invalida")
+                        return ("Fecha invalida")
                 else:
-                    if self.dia > numDiasxmes[self.mes]:
-                        print("Fecha invalida") 
+                    if self.dia > self.numDiasxmes[self.mes]:
+                        return ("Fecha invalida") 
             else:    
-                if self.dia > numDiasxmes[self.mes]:
-                    print("Fecha invalida")
-        print ("Fecha valida")         
+                if self.dia > self.numDiasxmes[self.mes]:
+                    return ("Fecha invalida")
+        return ("Fecha valida")         
 
     def formatoLatino(self):
-        print("("+dia+"/"+mes+"/"+year+")")
+        return self.dia + "/" + self.mes + "/" + self.year
+
 
     def formatoGringo(self):
         print("("+mes+"/"+year+"/"+year+")")
