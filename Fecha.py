@@ -47,11 +47,11 @@ class Fecha:
         return ("Fecha valida")         
 
     def formatoLatino(self):
-        return self.dia + "/" + self.mes + "/" + self.year
+        return "Formato Latino: (" + str(self.dia) + "/" + str(self.mes) + "/" + str(self.year) + ")"
 
 
     def formatoGringo(self):
-        print("("+mes+"/"+year+"/"+year+")")
+        return "Formato Gringo: (" + str(self.mes) + "/" + str(self.dia) + "/" + str(self.year) + ")"
 
         
 
