@@ -22,7 +22,13 @@ class Fecha:
         return self.mes
 
     def getYear(self):
-        return self.year
+        return self.year       
+
+    def formatoLatino(self):
+        return "Formato Latino: (" + str(self.dia) + "/" + str(self.mes) + "/" + str(self.year) + ")"
+
+    def formatoGringo(self):
+        return "Formato Gringo: (" + str(self.mes) + "/" + str(self.dia) + "/" + str(self.year) + ")"
 
     def validarBisiesto(self):
         if self.year%4==0 and (self.year%100!=0 or self.year%400==0):
@@ -31,27 +37,40 @@ class Fecha:
             return False
 
     def validarFecha(self):
-        if self.mes < 1 or self.mes > 12:
-            return ("Fecha invalida")
+        if self.year > 2100:
+            return False            
         else:
-            if self.validarBisiesto():
-                if self.mes == 2:
-                    if self.dia>29:
-                        return ("Fecha invalida")
-                else:
+            if self.mes < 1 or self.mes > 12:
+                return False
+            else:
+                if self.validarBisiesto():
+                    if self.mes == 2:
+                        if self.dia>29:
+                            return False
+                    else:
+                        if self.dia > self.numDiasxmes[self.mes]:
+                            return False 
+                else:    
                     if self.dia > self.numDiasxmes[self.mes]:
-                        return ("Fecha invalida") 
-            else:    
-                if self.dia > self.numDiasxmes[self.mes]:
-                    return ("Fecha invalida")
-        return ("Fecha valida")         
+                        return False
+        return True  
 
-    def formatoLatino(self):
-        return "Formato Latino: (" + str(self.dia) + "/" + str(self.mes) + "/" + str(self.year) + ")"
+    def sumSevenDays(self, fechaAutorizacion):
+        auxDia = fechaAutorizacion.dia + 7
+        auxMes = fechaAutorizacion.mes
+        auxYear = fechaAutorizacion.year
+        if auxDia > self.numDiasxmes[fechaAutorizacion.mes]:
+            auxMes = fechaAutorizacion.mes + 1
+            if auxMes > 12:
+                auxMes = 1
+                auxYear = fechaAutorizacion.year + 1
+            auxDia = auxDia - self.numDiasxmes[fechaAutorizacion.mes]
+        self.dia=auxDia
+        self.mes=auxMes
+        self.year=auxYear
 
 
-    def formatoGringo(self):
-        return "Formato Gringo: (" + str(self.mes) + "/" + str(self.dia) + "/" + str(self.year) + ")"
+        
 
         
 

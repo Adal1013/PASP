@@ -4,4 +4,5 @@
 from Persona import Persona
 
 class Solicitante(Persona):
-   
+	def __init__(self,id,firstname,lastname,homephone,celphone):
+		Persona.__init__(self,id,firstname,lastname,homephone,celphone)
